@@ -15,6 +15,7 @@ jobs:
       with:
         environment-file: environment.yml
         activate-environment: fastapi
+        auto-activate: false
     - name: Lint with flake8
       run: |
         conda install flake8
