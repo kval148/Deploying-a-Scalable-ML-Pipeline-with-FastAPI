@@ -1,5 +1,6 @@
 import os
 
+import logging
 import pandas as pd
 from sklearn.model_selection import train_test_split
 
@@ -12,6 +13,10 @@ from ml.model import (
     save_model,
     train_model,
 )
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
+logger = logging.getLogger()
+
 # TODO: load the cencus.csv data
 project_path = os.path.dirname(os.path.abspath(__file__))
 data_path = os.path.join(project_path, "data", "census.csv")
@@ -62,10 +67,14 @@ model = train_model(X_train, y_train)
 # save the model and the encoder
 model_path = os.path.join(project_path, "model", "model.pkl")
 save_model(model, model_path)
+logger.info(f"Model saved to {model_path}")
+
 encoder_path = os.path.join(project_path, "model", "encoder.pkl")
 save_model(encoder, encoder_path)
+logger.info(f"Encoder saved to {encoder_path}")
 
 # load the model
+logger.info(f"Loading model from {model_path}")
 model = load_model(
     model_path
 )
