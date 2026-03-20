@@ -23,7 +23,7 @@ data = pd.read_csv(data_path) # your code here
 train, test = train_test_split(
     data, 
     test_size=0.2,
-    stratify="salary",
+    stratify=data["salary"],
     random_state=42,
 )
 
