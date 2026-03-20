@@ -2,7 +2,6 @@ import pickle
 from sklearn.metrics import fbeta_score, precision_score, recall_score
 from ml.data import process_data
 from sklearn.ensemble import RandomForestClassifier
-# TODO: add necessary import
 
 # Optional: implement hyperparameter tuning.
 def train_model(X_train, y_train):
@@ -64,7 +63,7 @@ def inference(model, X):
     """
     # TODO: implement the function
     preds = model.predict(X)
-    
+
     return preds
 
 
@@ -118,7 +117,7 @@ def performance_on_categorical_slice(
         Trained sklearn OneHotEncoder, only used if training=False.
     lb : sklearn.preprocessing._label.LabelBinarizer
         Trained sklearn LabelBinarizer, only used if training=False.
-    model : ???
+    model : sklearn.ensemble.RandomForestClassifier
         Model used for the task.
 
     Returns
@@ -130,10 +129,16 @@ def performance_on_categorical_slice(
     """
     # TODO: implement the function
     X_slice, y_slice, _, _ = process_data(
-        # your code here
+        X=data[data[column_name]==slice_value],
+        categorical_features=categorical_features,
+        label=label,
+        training=False,
+        encoder=encoder,
+        lb=lb,
         # for input data, use data in column given as "column_name", with the slice_value 
         # use training = False
     )
-    preds = None # your code here to get prediction on X_slice using the inference function
+    preds = inference(model, X_slice)
+    # your code here to get prediction on X_slice using the inference function
     precision, recall, fbeta = compute_model_metrics(y_slice, preds)
     return precision, recall, fbeta
