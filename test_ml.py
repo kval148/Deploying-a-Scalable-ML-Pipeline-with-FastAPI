@@ -4,7 +4,6 @@ import pandas as pd
 import pickle
 import pytest
 from sklearn.ensemble import RandomForestClassifier
-# TODO: add necessary import
 
 def test_train_model_output_type():
     """
@@ -30,7 +29,6 @@ def test_train_model_output_type():
     )    
 
 
-# TODO: implement the second test. Change the function name and input as needed
 def test_compute_model_metrics_recall():
     """
     Checks that model.compute_model_metrics() computes the correct
@@ -54,7 +52,6 @@ def test_compute_model_metrics_recall():
     )
 
 
-# TODO: implement the third test. Change the function name and input as needed
 def test_save_model():
     """
     Checks that the model is saved in pickle format successfully by
